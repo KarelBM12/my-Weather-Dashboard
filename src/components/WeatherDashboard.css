@@ -1,0 +1,86 @@
+/* WeatherDashboard.css */
+
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 100px;
+    background-color: #93ddfb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .weather-card {
+    background-color: #f4f4f4;
+    width: 300px;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .weather-card h2 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .weather-condition {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .weather-temperature {
+    font-size: 50px;
+    font-weight: bold;
+    color: #000000;
+    margin: 20px 0;
+  }
+  
+  .weather-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .weather-box {
+    width: 80px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .weather-box p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #d70007;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #000000;
+  }
+
+  .card {
+    background-color: #f4f4f4;
+    width: 300px;
+    padding: 70px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 20px; /* Space between cards */
+}
+  
