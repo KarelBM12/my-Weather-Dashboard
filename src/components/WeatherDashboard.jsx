@@ -60,7 +60,7 @@ const LocationForm = ({ onSubmit }) => {
       const weatherData = await weatherResponse.json();
 
     // Send the weather data to your Azure backend
-    const backendUrl = kbmiranaapi.azurewebsites.net/WeatherDashboard; // Replace with your Azure backend URL
+    const backendUrl = "https:///kbmiranaapi.azurewebsites.net/WeatherDashboard"; // Replace with your Azure backend URL
     const backendResponse = await fetch(backendUrl, {
       method: "POST",
       headers: {
