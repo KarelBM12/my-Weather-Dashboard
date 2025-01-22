@@ -57,12 +57,27 @@ const LocationForm = ({ onSubmit }) => {
         throw new Error("Location not found.");
       }
 
-      const data = await response.json();
-      onSubmit(data); // Pass the weather data to the parent component
-    } catch (error) {
-      alert(error.message);
+      const weatherData = await weatherResponse.json();
+
+    // Send the weather data to your Azure backend
+    const backendUrl = "https://kbmiranaapi.azurewebsites.net/saveWeather"; // Replace with your Azure backend URL
+    const backendResponse = await fetch(backendUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(weatherData),
+    });
+
+    if (!backendResponse.ok) {
+      throw new Error("Failed to save data to the server.");
     }
-  };
+
+    onSubmit(weatherData); // Update the UI with the fetched weather data
+  } catch (error) {
+    alert(error.message);
+  }
+};
 
   return (
     <div className="card">
