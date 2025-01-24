@@ -48,37 +48,50 @@ const LocationForm = ({ onSubmit }) => {
       alert("Please enter a location.");
       return;
     }
+    try {
+      const response = await fetch("https://kbmiranaapi.azurewebsites.net/getWeather", {
+          method: "POST",
+          headers:{
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(weatherData),    
+        });
 
+        if(response.ok){
+          const result = await response.json();
+          alert("Data is submitted successfully");
+          console.log("API Response:", result)
+          console.log("Data submission was successful");
+
+          //reset the dashboard
+          setLocation({
+            location:"",
+          });
+        } else {
+          alert("failed to submit");
+          console.error("API Error", response.statusText);
+        }
+    } catch(error){
+      alert("An error occured while submitting data");
+      console.error("error", error);
+    }
     const apiKey = "b8bba5253379226c8bb1c2893f70e181"; // Replace with your OpenWeatherMap API key
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`;
     try {
-      const response = await fetch(apiUrl + '&appid=b8bba5253379226c8bb1c2893f70e181');
+      const response = await fetch(apiUrl + `&appid=b8bba5253379226c8bb1c2893f70e181`);
       if (!response.ok) {
         throw new Error("Location not found.");
       }
 
-      const weatherData = await weatherResponse.json();
+      const data = await response.json();
 
-    // Send the weather data to your Azure backend
-    const backendUrl = "https:///kbmiranaapi.azurewebsites.net/WeatherDashboard"; // Replace with your Azure backend URL
-    const backendResponse = await fetch(backendUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(weatherData),
-    });
-
-    if (!backendResponse.ok) {
-      throw new Error("Failed to save data to the server.");
+      onSubmit(data); // Pass the weather data to the parent component
+    } catch (error) {
+      alert(error.message);
     }
+  };
 
-    onSubmit(weatherData); // Update the UI with the fetched weather data
-  } catch (error) {
-    alert(error.message);
-  }
-};
-
+  
   return (
     <div className="card">
       <h1>Enter Location</h1>
